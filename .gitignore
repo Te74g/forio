@@ -1,0 +1,13 @@
+# build scaffolding / internal (do not publish)
+.claude/
+_*
+
+# local-only / archives / spreadsheets (do not publish)
+portfolio_vinc_rescue/
+*.zip
+*.xlsx
+*.xls
+vrchat-introduction-card.png
+スクリーンショット*
+!assets/images/プロフ/vrchat-introduction-card.png
+!assets/images/プロフ/スクリーンショット 2026-06-01 024105.png
