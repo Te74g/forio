@@ -1,9 +1,5 @@
 ﻿:root{ --gold:#daab39; --purple:#7168e7; --lav:#d3d2dc; --brown:#5c4714; --cream:#faf6ec; --warm:#f4e6c9; --warmh:#fbe0ab; --dash:#d8c79a; }
 
-.mobileApology{
-  display:none;
-}
-
 html.deck-mode,
 html.deck-mode body{
   width:100%;
@@ -1646,10 +1642,6 @@ html.deck-mode body{
   pointer-events:none;
 }
 
-body.is-section4 .mobileApology{
-  display:none;
-}
-
 .section4--closing .section__inner{
   position:relative;
   z-index:1;
@@ -2465,28 +2457,6 @@ body.is-section4 .mobileApology{
 }
 
 @media (max-width:767px){
-  .mobileApology{
-    position:fixed;
-    left:12px;
-    right:12px;
-    top:12px;
-    z-index:10002;
-    display:block;
-    box-sizing:border-box;
-    padding:10px 12px;
-    border:1px solid rgba(113,104,231,.22);
-    border-radius:12px;
-    background:rgba(255,255,255,.92);
-    color:#5c4714;
-    font-family:'Noto Sans JP',sans-serif;
-    font-size:12px;
-    font-weight:700;
-    line-height:1.65;
-    text-align:center;
-    box-shadow:0 10px 26px rgba(92,71,20,.12);
-    pointer-events:none;
-  }
-
   .deck-mode #main{
     height:100dvh;
   }
