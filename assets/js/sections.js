@@ -538,6 +538,7 @@
   if (!modal) return;
   var viewer = modal.querySelector('.graphicModal__viewer');
   var viewerImg = modal.querySelector('.graphicModal__viewerImg');
+  var mobileGifFallbackMedia = window.matchMedia ? window.matchMedia('(max-width: 767px)') : null;
 
   function open() {
     modal.classList.add('is-open');
@@ -559,6 +560,14 @@
     viewer.setAttribute('aria-hidden', 'false');
   }
 
+  function getZoomSrc(button) {
+    var src = button.getAttribute('data-src');
+    if (mobileGifFallbackMedia && mobileGifFallbackMedia.matches) {
+      src = button.getAttribute('data-mobile-src') || src;
+    }
+    return src;
+  }
+
   function closeZoom() {
     if (!viewer || !viewerImg) return;
     viewer.classList.remove('is-open');
@@ -576,7 +585,7 @@
     var zoom = target.closest ? target.closest('.js-graphicZoom') : null;
     if (zoom) {
       e.preventDefault();
-      openZoom(zoom.getAttribute('data-src'));
+      openZoom(getZoomSrc(zoom));
       return;
     }
     if (target.closest && target.closest('.js-graphicZoomClose')) {
@@ -965,6 +974,7 @@
   var tiltIndex = 0;
   var layer = null;
   var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var touchLikeMedia = window.matchMedia ? window.matchMedia('(hover: none), (pointer: coarse)') : null;
   var interactiveSelector = [
     'a',
     'button',
@@ -977,6 +987,23 @@
     'canvas',
     '[role="button"]',
     '[tabindex]',
+    '[data-src]',
+    '[data-comment]',
+    '[data-favorite-modal]',
+    '.js-aboutModalOpen',
+    '.thumbnail-item'
+  ].join(',');
+  var tapControlSelector = [
+    'a',
+    'button',
+    'input',
+    'select',
+    'textarea',
+    'label',
+    'summary',
+    'video',
+    'canvas',
+    '[role="button"]',
     '[data-src]',
     '[data-comment]',
     '[data-favorite-modal]',
@@ -1080,11 +1107,19 @@
     if (document.documentElement.classList.contains('deck-transitioning')) return false;
     var target = event.target;
     if (!target || !target.closest) return true;
+    if (isTouchLikeClick(event) && target.closest(tapControlSelector)) return false;
     if (document.querySelector(overlaySelector) && !canStampInsideOverlay(target)) return false;
     if (target.closest('.Cover__Wrapper')) return false;
     if (target.closest('#section3 .photo-renovate__stamp')) return true;
     if (target.closest(interactiveSelector)) return false;
     return true;
+  }
+
+  function isTouchLikeClick(event) {
+    return Boolean(
+      (event.sourceCapabilities && event.sourceCapabilities.firesTouchEvents) ||
+      (touchLikeMedia && touchLikeMedia.matches)
+    );
   }
 
   function addSnow(stage) {
