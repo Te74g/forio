@@ -32,8 +32,12 @@
 
   const wrapper = document.querySelector(".Cover__Wrapper");
   const panels = Array.from(document.querySelectorAll(".Intro__Illust"));
+  const revealMain = () => {
+    document.body.classList.remove("is-cover-pending");
+  };
 
   if (!wrapper || panels.length === 0) {
+    revealMain();
     return;
   }
 
@@ -65,6 +69,7 @@
       wrapper.classList.add("is-emit");
       setTimeout(() => {
         wrapper.classList.add("is-done");
+        revealMain();
       }, 3700);
     }, 1000);
   };

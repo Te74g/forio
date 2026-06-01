@@ -3,6 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#10131a">
 <title></title>
 <link href="assets/css/style1.css" rel="stylesheet">
 <link href="assets/css/style2.css?v=1" rel="stylesheet">
@@ -10,10 +12,15 @@
 <link href="assets/css/hero-override.css?v=4" rel="stylesheet">
 <link href="assets/css/sections.css?v=124" rel="stylesheet">
 <style>
+:root{color-scheme:dark;}
+html,body{background:#10131a;}
+body.is-cover-pending #main{opacity:0;visibility:hidden;pointer-events:none;}
+body.is-cover-pending::before{content:"";position:fixed;inset:0;z-index:9998;background:#10131a;pointer-events:none;}
 .Cover__Wrapper{position:fixed;top:0;left:0;z-index:9999;}
+body:not(.is-cover-pending) #main{opacity:1;visibility:visible;}
 </style>
 </head>
-<body>
+<body class="is-cover-pending">
 <div class="mobileApology" role="note">
 縦型スマホ版の見た目調整は間に合いませんでした<br>
 本当に申し訳ありませんでした
@@ -600,7 +607,7 @@ VRChat上では写真撮影が趣味で、フォトコン企業賞も獲得経�
   <video class="sectionIntroVideo__media" src="assets/videos/section1-intro.mp4" preload="auto" muted playsinline></video>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js"></script>
-<script src="assets/js/script1.js?v=1"></script>
+<script src="assets/js/script1.js?v=2"></script>
 <script src="assets/js/sections.js?v=102"></script>
 </body>
 </html>
