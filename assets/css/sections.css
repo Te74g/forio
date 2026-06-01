@@ -92,6 +92,75 @@ html.deck-mode body{
   animation-name:deck-exit-back;
 }
 
+.orientationGuard{
+  display:none;
+  position:fixed;
+  inset:0;
+  z-index:10020;
+  align-items:center;
+  justify-content:center;
+  box-sizing:border-box;
+  padding:24px;
+  background:rgba(211,210,220,.94);
+  color:var(--brown);
+  pointer-events:auto;
+}
+
+.orientationGuard::before{
+  position:absolute;
+  inset:18px;
+  content:"";
+  border:1px solid rgba(218,171,57,.54);
+  pointer-events:none;
+}
+
+.orientationGuard__card{
+  display:none;
+  position:relative;
+  min-width:min(72vw,340px);
+  padding:24px 30px;
+  border:1px solid rgba(218,171,57,.68);
+  border-radius:8px;
+  background:rgba(255,255,255,.96);
+  box-shadow:0 18px 48px rgba(92,71,20,.18);
+  font-family:"M PLUS 1p","Noto Sans JP",sans-serif;
+  font-size:clamp(22px,6vw,36px);
+  font-weight:900;
+  line-height:1.25;
+  text-align:center;
+  letter-spacing:0;
+}
+
+@media (pointer:coarse) and (orientation:landscape) and (max-height:520px){
+  .orientationGuard{
+    display:flex;
+  }
+
+  .orientationGuard__card--phone{
+    display:block;
+  }
+
+  .deck-mode #main{
+    filter:blur(10px) saturate(.95);
+    pointer-events:none;
+  }
+}
+
+@media (pointer:coarse) and (orientation:portrait) and (min-width:768px) and (max-width:1100px){
+  .orientationGuard{
+    display:flex;
+  }
+
+  .orientationGuard__card--tablet{
+    display:block;
+  }
+
+  .deck-mode #main{
+    filter:blur(10px) saturate(.95);
+    pointer-events:none;
+  }
+}
+
 @keyframes deck-enter-forward{
   0%{ opacity:0; transform:translate3d(0,28px,0) scale(.99); }
   58%{ opacity:1; }
@@ -1032,6 +1101,19 @@ html.deck-mode body{
   .event-col-content .parchment-frame li{
     font-size:14px;
     line-height:1.8;
+  }
+}
+
+@media (max-width:900px) and (pointer:coarse) and (orientation:portrait){
+  .section2 .event-col-poster{
+    display:block;
+    width:min(48vw,170px);
+    margin:0 auto 14px;
+  }
+
+  .section2 .event-poster-img{
+    max-height:min(32dvh,240px);
+    object-fit:contain;
   }
 }
 
@@ -2461,6 +2543,11 @@ html.deck-mode body{
     height:100dvh;
   }
 
+  .deck-mode .deck-panel{
+    box-sizing:border-box;
+    max-width:100vw;
+  }
+
   .deck-mode .deck-panel.is-active{
     overflow-y:auto !important;
     overflow-x:hidden !important;
@@ -2474,8 +2561,13 @@ html.deck-mode body{
     padding:18px 10px 58px;
   }
 
+  .deck-mode #hero.deck-panel.is-active{
+    justify-content:flex-start;
+    padding-top:clamp(54px, 10dvh, 78px);
+  }
+
   #hero.hero{
-    min-height:100dvh;
+    min-height:0;
     aspect-ratio:auto;
   }
 
@@ -2858,6 +2950,17 @@ html.deck-mode body{
   .organizer-info img{
     width:26px;
     height:26px;
+  }
+
+  .section2 .event-col-poster{
+    display:block;
+    width:min(48vw,170px);
+    margin:0 auto 14px;
+  }
+
+  .section2 .event-poster-img{
+    max-height:min(32dvh,240px);
+    object-fit:contain;
   }
 
   .event-col-content{

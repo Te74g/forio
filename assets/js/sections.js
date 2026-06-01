@@ -90,6 +90,7 @@
   function activeLocalScrollPanel() {
     var panel = panels[current];
     if (!panel) return null;
+    if (panel.id === 'hero') return null;
     return panel.scrollHeight > panel.clientHeight + 2 ? panel : null;
   }
 
@@ -991,6 +992,20 @@
     '[data-comment]',
     '[data-favorite-modal]',
     '.js-aboutModalOpen',
+    '.js-commentClose',
+    '.js-aboutModalClose',
+    '.js-favoriteItemModalClose',
+    '.js-aniameModalClose',
+    '.js-aniameZoom',
+    '.js-aniameZoomClose',
+    '.js-graphicModalClose',
+    '.js-graphicZoom',
+    '.js-graphicZoomClose',
+    '.js-photoModalClose',
+    '.js-photoZoom',
+    '.js-photoZoomClose',
+    '.js-sectionPosterOpen',
+    '.js-sectionPosterClose',
     '.thumbnail-item'
   ].join(',');
   var tapControlSelector = [
@@ -1008,6 +1023,20 @@
     '[data-comment]',
     '[data-favorite-modal]',
     '.js-aboutModalOpen',
+    '.js-commentClose',
+    '.js-aboutModalClose',
+    '.js-favoriteItemModalClose',
+    '.js-aniameModalClose',
+    '.js-aniameZoom',
+    '.js-aniameZoomClose',
+    '.js-graphicModalClose',
+    '.js-graphicZoom',
+    '.js-graphicZoomClose',
+    '.js-photoModalClose',
+    '.js-photoZoom',
+    '.js-photoZoomClose',
+    '.js-sectionPosterOpen',
+    '.js-sectionPosterClose',
     '.thumbnail-item'
   ].join(',');
   var overlaySelector = [
@@ -1107,7 +1136,7 @@
     if (document.documentElement.classList.contains('deck-transitioning')) return false;
     var target = event.target;
     if (!target || !target.closest) return true;
-    if (isTouchLikeClick(event) && target.closest(tapControlSelector)) return false;
+    if ((isTouchLikeClick(event) || isMobileViewport()) && isTapControlEvent(event, target)) return false;
     if (document.querySelector(overlaySelector) && !canStampInsideOverlay(target)) return false;
     if (target.closest('.Cover__Wrapper')) return false;
     if (target.closest('#section3 .photo-renovate__stamp')) return true;
@@ -1120,6 +1149,17 @@
       (event.sourceCapabilities && event.sourceCapabilities.firesTouchEvents) ||
       (touchLikeMedia && touchLikeMedia.matches)
     );
+  }
+
+  function isTapControlEvent(event, target) {
+    if (target && target.closest && target.closest(tapControlSelector)) return true;
+    if (!event || typeof document.elementFromPoint !== 'function') return false;
+    var pointTarget = document.elementFromPoint(event.clientX, event.clientY);
+    return Boolean(pointTarget && pointTarget.closest && pointTarget.closest(tapControlSelector));
+  }
+
+  function isMobileViewport() {
+    return window.matchMedia ? window.matchMedia('(max-width: 767px)').matches : window.innerWidth <= 767;
   }
 
   function addSnow(stage) {
