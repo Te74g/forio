@@ -1,4 +1,4 @@
-:root{ --gold:#daab39; --purple:#7168e7; --lav:#d3d2dc; --brown:#5c4714; --cream:#faf6ec; --warm:#f4e6c9; --warmh:#fbe0ab; --dash:#d8c79a; }
+﻿:root{ --gold:#daab39; --purple:#7168e7; --lav:#d3d2dc; --brown:#5c4714; --cream:#faf6ec; --warm:#f4e6c9; --warmh:#fbe0ab; --dash:#d8c79a; }
 
 .mobileApology{
   display:none;
@@ -396,7 +396,7 @@ html.deck-mode body{
 .favoriteItemModal--wide .favoriteItemModal__panel{ width:min(94vw,900px); }
 .favoriteItemModal__close{ position:absolute; right:16px; top:14px; width:36px; height:36px; border:none; border-radius:50%; background:#f1edf8; color:#6258a8; font-size:20px; cursor:pointer; }
 .favoriteItemModal__title{ margin:0 44px 16px 0; font-family:'Noto Sans JP',sans-serif; font-size:18px; font-weight:900; color:var(--brown); line-height:1.4; }
-.favoriteItemModal__title::before{ content:"✦"; color:var(--gold); margin-right:10px; }
+.favoriteItemModal__title::before{ content:"笨ｦ"; color:var(--gold); margin-right:10px; }
 .favoriteItemModal__text{ margin:0; font-family:'Noto Sans JP',sans-serif; font-size:13.5px; line-height:1.9; color:#4f4a5e; }
 .favoriteItemModal__groups{ display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px; }
 .favoriteItemModal__group{ background:#fafbff; border:1px solid #ededf4; border-radius:12px; padding:13px 15px; }
@@ -1625,12 +1625,24 @@ html.deck-mode body{
   }
 }
 
-.section4--closing{
+#section4.section4--closing{
   position:relative;
   min-height:100vh;
   overflow:hidden;
   background:var(--lav);
   color:var(--brown);
+}
+
+#section4.section4--closing::before{
+  content:"";
+  position:absolute;
+  inset:-28px;
+  z-index:0;
+  background:url("../images/section4/closing-letter-palette.png") center/cover no-repeat;
+  filter:blur(22px);
+  transform:scale(1.08);
+  opacity:.58;
+  pointer-events:none;
 }
 
 body.is-section4 .mobileApology{
@@ -1663,8 +1675,8 @@ body.is-section4 .mobileApology{
   position:absolute;
   z-index:1;
   pointer-events:none;
-  background:rgba(255,255,255,.5);
-  border:1px solid rgba(218,171,57,.22);
+  background:var(--lav);
+  border:1px solid var(--gold);
   box-shadow:0 12px 24px rgba(92,71,20,.08);
 }
 
@@ -1697,11 +1709,11 @@ body.is-section4 .mobileApology{
   display:block;
 }
 
-.section4-final__fox{
+.section4-final__akyo{
   position:absolute;
   z-index:2;
-  right:15.5%;
-  bottom:14%;
+  right:8.5%;
+  bottom:6.5%;
   width:clamp(104px,11vw,168px);
   height:auto;
   transform:rotate(-5deg);
@@ -1829,10 +1841,10 @@ body.is-section4 .mobileApology{
     line-height:1.72;
   }
 
-  .section4-final__fox{
-    right:10%;
-    bottom:9%;
-    width:88px;
+  .section4-final__akyo{
+    right:5%;
+    bottom:4%;
+    width:82px;
   }
 }
 
@@ -2974,3 +2986,4 @@ body.is-section4 .mobileApology{
     --stamp-size:54px;
   }
 }
+

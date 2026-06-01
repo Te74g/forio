@@ -961,6 +961,7 @@
   var trueWorldCount = 0;
   var trueWorldInterval = 6;
   var stampClickCount = 0;
+  var effectStep = 0;
   var tiltIndex = 0;
   var layer = null;
   var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -1184,6 +1185,12 @@
     return !target.closest(modalControlSelector);
   }
 
+  function nextEffectType() {
+    var type = effectStep === 0 ? 'context' : (effectStep === 1 ? 'snow' : 'paw');
+    effectStep = effectStep >= 2 ? 0 : effectStep + 1;
+    return type;
+  }
+
   function trimLayer() {
     if (!layer) return;
     while (layer.children.length > 10) {
@@ -1193,13 +1200,14 @@
 
   function spawnStamp(event) {
     var context = stampContextForEvent(event) || 'star';
+    var effect = nextEffectType();
 
     var root = document.createElement('div');
     var stage = document.createElement('div');
     var img = document.createElement('img');
     var shine = createNode('clickStamp__shine');
 
-    root.className = 'clickStamp clickStamp--fixed clickStamp--context-' + context;
+    root.className = 'clickStamp clickStamp--' + effect + ' clickStamp--context-' + context;
     root.style.left = event.clientX + 'px';
     root.style.top = (window.scrollY + event.clientY) + 'px';
     stage.className = 'clickStamp__stage';
@@ -1209,12 +1217,12 @@
     img.alt = '';
     img.decoding = 'async';
 
-    addSnow(stage);
-    addPaws(stage);
-    if (context === 'star') addStars(stage);
-    if (context === 'leaf') addLeaves(stage);
-    if (context === 'shutter') addShutter(stage);
-    if (context === 'letter') addLetters(stage);
+    if (effect === 'snow') addSnow(stage);
+    if (effect === 'paw') addPaws(stage);
+    if (effect === 'context' && context === 'star') addStars(stage);
+    if (effect === 'context' && context === 'leaf') addLeaves(stage);
+    if (effect === 'context' && context === 'shutter') addShutter(stage);
+    if (effect === 'context' && context === 'letter') addLetters(stage);
 
     stage.appendChild(img);
     stage.appendChild(shine);
