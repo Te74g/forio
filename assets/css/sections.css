@@ -396,7 +396,7 @@ html.deck-mode body{
 .favoriteItemModal--wide .favoriteItemModal__panel{ width:min(94vw,900px); }
 .favoriteItemModal__close{ position:absolute; right:16px; top:14px; width:36px; height:36px; border:none; border-radius:50%; background:#f1edf8; color:#6258a8; font-size:20px; cursor:pointer; }
 .favoriteItemModal__title{ margin:0 44px 16px 0; font-family:'Noto Sans JP',sans-serif; font-size:18px; font-weight:900; color:var(--brown); line-height:1.4; }
-.favoriteItemModal__title::before{ content:"笨ｦ"; color:var(--gold); margin-right:10px; }
+.favoriteItemModal__title::before{ content:""; display:inline-block; width:.72em; height:.72em; margin-right:10px; background:var(--gold); clip-path:polygon(50% 0,61% 36%,100% 50%,61% 64%,50% 100%,39% 64%,0 50%,39% 36%); vertical-align:-.02em; }
 .favoriteItemModal__text{ margin:0; font-family:'Noto Sans JP',sans-serif; font-size:13.5px; line-height:1.9; color:#4f4a5e; }
 .favoriteItemModal__groups{ display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px; }
 .favoriteItemModal__group{ background:#fafbff; border:1px solid #ededf4; border-radius:12px; padding:13px 15px; }
@@ -447,6 +447,7 @@ html.deck-mode body{
 .graphicModal__item{ break-inside:avoid; margin:0 0 14px; padding:8px; border:1px solid rgba(113,104,231,.16); border-radius:12px; background:#faf9ff; overflow:hidden; }
 .graphicModal__item img{ display:block; width:100%; height:auto; object-fit:contain; }
 .graphicModal__zoom{ display:block; width:100%; padding:0; border:none; background:transparent; cursor:zoom-in; }
+.graphicModal__zoom picture{ display:block; width:100%; }
 .graphicModal__viewer{ position:absolute; inset:0; z-index:3; display:none; background:rgba(18,14,8,.78); }
 .graphicModal__viewer.is-open{ display:block; }
 .graphicModal__viewerStage{ position:absolute; inset:0; display:flex; align-items:center; justify-content:center; width:100%; height:100%; padding:clamp(28px,5vw,72px); border:none; background:transparent; cursor:zoom-out; }
@@ -2984,5 +2985,71 @@ body.is-section4 .mobileApology{
 
   .clickStamp__stage{
     --stamp-size:54px;
+  }
+
+  html,
+  body,
+  .deck-mode #main{
+    background:#fff !important;
+  }
+
+  .deck-mode .deck-panel{
+    background:#fff;
+  }
+
+  .deck-mode .section3--photo-gallery.deck-panel{
+    background:#080807;
+    color:#fff;
+  }
+
+  .profile.sections,
+  .section2.sections,
+  .section3.photobook,
+  #section4.section4--closing{
+    background:#fff !important;
+    color:#5c4714;
+  }
+
+  .section2.sections::before,
+  #section4.section4--closing::before{
+    display:none;
+  }
+
+  .event-title-container::before{
+    display:none;
+  }
+
+  .event-title-container img{
+    filter:none;
+  }
+
+  .organizer-info{
+    background:rgba(255,255,255,.94);
+    border-color:rgba(218,171,57,.42);
+    color:#5c4714;
+    box-shadow:0 10px 26px rgba(92,71,20,.12);
+  }
+
+  .event-image-container{
+    background:#fff;
+    box-shadow:0 10px 26px rgba(92,71,20,.12);
+  }
+
+  .event-col-content .parchment-frame{
+    background:#fff;
+    color:#5c4714;
+    border-color:rgba(218,171,57,.32);
+    box-shadow:0 12px 32px rgba(92,71,20,.12);
+  }
+
+  .event-col-content .parchment-frame h3{
+    color:#5c4714;
+  }
+
+  .event-col-content .parchment-frame .btn{
+    background:#fff;
+    color:#7168e7;
+    border-color:rgba(113,104,231,.38);
+    box-shadow:0 8px 18px rgba(113,104,231,.08);
   }
 }

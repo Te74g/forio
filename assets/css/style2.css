@@ -225,6 +225,11 @@ body{
   pointer-events:none;
 }
 
+.Sign__Wrapper picture{
+  display:block;
+  width:100%;
+}
+
 .Sign__Image{
   display:block;
   width:100%;
