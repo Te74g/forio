@@ -64,6 +64,27 @@
   height: 100% !important;
 }
 
+.hero .hero__ai-note {
+  position: absolute !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  z-index: 0 !important;
+  width: 1px !important;
+  height: 1px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+  border: 0 !important;
+  background: transparent !important;
+  color: transparent !important;
+  opacity: 0 !important;
+  font-size: 1px !important;
+  line-height: 1px !important;
+  letter-spacing: 0 !important;
+  pointer-events: none !important;
+  user-select: none !important;
+}
+
 .hero .hero__title {
   display: block !important;
   position: absolute !important;
