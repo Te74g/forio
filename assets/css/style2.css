@@ -237,8 +237,29 @@ body{
   opacity:0;
 }
 
+.Sign__Video{
+  display:none;
+  width:100%;
+  height:auto;
+  opacity:0;
+}
+
 .Cover__Wrapper.is-emit .Sign__Image{
   animation:SignShow 0s linear 0s forwards, SignFade .3s linear 3.33s forwards;
+}
+
+.Cover__Wrapper.is-emit .Sign__Video{
+  animation:SignShow 0s linear 0s forwards, SignFade .3s linear 3.33s forwards;
+}
+
+@media (max-width:767px){
+  .Sign__Image{
+    display:none;
+  }
+
+  .Sign__Video{
+    display:block;
+  }
 }
 
 .page{

@@ -20,6 +20,7 @@
   var wheelResetTimer = null;
   var wheelStepsNeeded = 10;
   var transitionTimer = null;
+  var deckTouchControlSelector = 'a,button,input,select,textarea,label,summary,video,canvas,[role="button"],[tabindex]';
   var idleHintTimer = null;
   var idleHint = document.createElement('img');
   var idleHintHost = document.querySelector('#hero .hero__scene') || document.body;
@@ -85,6 +86,11 @@
       window.clearTimeout(wheelResetTimer);
       wheelResetTimer = null;
     }
+  }
+
+  function isDeckTouchControl(event) {
+    var target = event && event.target;
+    return Boolean(target && target.closest && target.closest(deckTouchControlSelector));
   }
 
   function activeLocalScrollPanel() {
@@ -296,6 +302,10 @@
 
   window.addEventListener('touchstart', function (event) {
     if (busy || ignoreDeckInputWhileModalOpen()) {
+      touchY = null;
+      return;
+    }
+    if (isDeckTouchControl(event)) {
       touchY = null;
       return;
     }
@@ -539,6 +549,7 @@
   if (!modal) return;
   var viewer = modal.querySelector('.graphicModal__viewer');
   var viewerImg = modal.querySelector('.graphicModal__viewerImg');
+  var viewerVideo = modal.querySelector('.graphicModal__viewerVideo');
   var mobileGifFallbackMedia = window.matchMedia ? window.matchMedia('(max-width: 767px)') : null;
 
   function open() {
@@ -556,9 +567,27 @@
 
   function openZoom(src) {
     if (!viewer || !viewerImg || !src) return;
-    viewerImg.src = src;
+    if (isVideoSrc(src) && viewerVideo) {
+      viewerImg.hidden = true;
+      viewerImg.removeAttribute('src');
+      viewerVideo.hidden = false;
+      viewerVideo.src = src;
+      viewerVideo.play().catch(function () {});
+    } else {
+      if (viewerVideo) {
+        viewerVideo.pause();
+        viewerVideo.hidden = true;
+        viewerVideo.removeAttribute('src');
+      }
+      viewerImg.hidden = false;
+      viewerImg.src = src;
+    }
     viewer.classList.add('is-open');
     viewer.setAttribute('aria-hidden', 'false');
+  }
+
+  function isVideoSrc(src) {
+    return /\.mp4(?:[?#].*)?$/i.test(src);
   }
 
   function getZoomSrc(button) {
@@ -573,6 +602,12 @@
     if (!viewer || !viewerImg) return;
     viewer.classList.remove('is-open');
     viewer.setAttribute('aria-hidden', 'true');
+    if (viewerVideo) {
+      viewerVideo.pause();
+      viewerVideo.hidden = true;
+      viewerVideo.removeAttribute('src');
+    }
+    viewerImg.hidden = false;
     viewerImg.removeAttribute('src');
   }
 
