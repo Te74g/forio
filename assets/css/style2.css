@@ -75,6 +75,10 @@ body{
   animation:IntroHide .17s linear 3.46s forwards;
 }
 
+.Cover__Wrapper.is-done{
+  pointer-events:none;
+}
+
 .Cover__Inner{
   position:absolute;
   top:0;
@@ -237,8 +241,29 @@ body{
   opacity:0;
 }
 
+.Sign__Video{
+  display:none;
+  width:100%;
+  height:auto;
+  opacity:0;
+}
+
 .Cover__Wrapper.is-emit .Sign__Image{
   animation:SignShow 0s linear 0s forwards, SignFade .3s linear 3.33s forwards;
+}
+
+@media (max-width:767px) and (hover:none), (max-width:767px) and (pointer:coarse){
+  .Sign__Wrapper picture{
+    display:none;
+  }
+
+  .Sign__Video{
+    display:block;
+  }
+
+  .Cover__Wrapper.is-emit .Sign__Video{
+    animation:SignShow 0s linear 0s forwards, SignFade .3s linear 3.33s forwards;
+  }
 }
 
 .page{
@@ -340,7 +365,7 @@ body{
   width:min(100%,860px);
 }
 
-@media(max-width:767px){
+@media(max-width:767px) and (hover:none), (max-width:767px) and (pointer:coarse){
   .Cover__Wrapper{
     min-height:160vw;
   }
@@ -354,7 +379,7 @@ body{
   }
 }
 
-@media(max-width:767px){
+@media(max-width:767px) and (hover:none), (max-width:767px) and (pointer:coarse){
   .section1 .section__inner{
     padding:34px 16px;
   }

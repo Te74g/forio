@@ -32,6 +32,18 @@
 
   const wrapper = document.querySelector(".Cover__Wrapper");
   const panels = Array.from(document.querySelectorAll(".Intro__Illust"));
+  const signVideo = document.querySelector(".Sign__Video");
+  const isPhoneViewport = () => {
+    const narrow = window.matchMedia
+      ? window.matchMedia("(max-width: 767px)").matches
+      : window.innerWidth <= 767;
+    if (!narrow) return false;
+    const coarse = window.matchMedia && window.matchMedia("(pointer: coarse)").matches;
+    const hoverNone = window.matchMedia && window.matchMedia("(hover: none)").matches;
+    const touchPoints = navigator.maxTouchPoints || navigator.msMaxTouchPoints || 0;
+    const mobileUA = /Android|iPhone|iPod|Mobile/i.test(navigator.userAgent);
+    return Boolean(coarse || hoverNone || touchPoints > 0 || mobileUA);
+  };
   const revealMain = () => {
     document.body.classList.remove("is-cover-pending");
   };
@@ -66,6 +78,13 @@
     setTimeout(() => {
       resetPageToTop();
       document.dispatchEvent(new CustomEvent("portfolio:sign-transition"));
+      if (signVideo && isPhoneViewport()) {
+        signVideo.muted = true;
+        signVideo.playsInline = true;
+        try { signVideo.currentTime = 0; } catch (error) {}
+        const playback = signVideo.play();
+        if (playback && playback.catch) playback.catch(() => {});
+      }
       wrapper.classList.add("is-emit");
       setTimeout(() => {
         wrapper.classList.add("is-done");

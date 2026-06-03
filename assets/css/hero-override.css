@@ -318,7 +318,7 @@
 .pf-deco.sm { font-size: .65em; opacity: .5; }
 .pf-deco.lg { font-size: 1.5em; opacity: .8; }
 
-@media (max-width: 767px) {
+@media (max-width: 767px) and (hover: none), (max-width: 767px) and (pointer: coarse) {
   .hero .hero__frame {
     width: min(96vw, 80vh * 16 / 9) !important;
     height: calc(min(96vw, 80vh * 16 / 9) * 9 / 16) !important;

@@ -976,7 +976,8 @@
   var sourceRounds = 0;
   var memeIndex = 0;
   var rareMemeCount = 0;
-  var rareMemeInterval = 7;
+  var rareMemeStartRounds = 5;
+  var rareMemeInterval = 24;
   var trueWorldIndex = 0;
   var trueWorldCount = 0;
   var trueWorldInterval = 6;
@@ -1117,7 +1118,7 @@
         return source;
       }
     }
-    if (sourceRounds >= 2 && memeStampSources.length) {
+    if (sourceRounds >= rareMemeStartRounds && memeStampSources.length) {
       rareMemeCount += 1;
       if (rareMemeCount >= rareMemeInterval) {
         rareMemeCount = 0;
@@ -1146,10 +1147,10 @@
     if (document.documentElement.classList.contains('deck-transitioning')) return false;
     var target = event.target;
     if (!target || !target.closest) return true;
-    if ((isTouchLikeClick(event) || isMobileViewport()) && isTapControlEvent(event, target)) return false;
-    if (document.querySelector(overlaySelector) && !canStampInsideOverlay(target)) return false;
+    if (document.querySelector(overlaySelector)) return false;
     if (target.closest('.Cover__Wrapper')) return false;
     if (target.closest('#section3 .photo-renovate__stamp')) return true;
+    if ((isTouchLikeClick(event) || isMobileViewport()) && isTapControlEvent(event, target)) return false;
     if (target.closest(interactiveSelector)) return false;
     return true;
   }
