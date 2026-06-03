@@ -19,6 +19,7 @@
   var wheelDirection = 0;
   var wheelResetTimer = null;
   var wheelStepsNeeded = 10;
+  var mouseWheelDeltaThreshold = 80;
   var transitionTimer = null;
   var idleHintTimer = null;
   var idleHint = document.createElement('img');
@@ -248,6 +249,11 @@
     }
     event.preventDefault();
     markScrollActivity();
+    if (isMouseWheelEvent(event)) {
+      resetWheelStep();
+      go(current + direction);
+      return;
+    }
     if (direction !== wheelDirection) {
       wheelDirection = direction;
       wheelSteps = 0;
@@ -263,6 +269,10 @@
     wheelDirection = 0;
     go(current + direction);
   }, { passive: false });
+
+  function isMouseWheelEvent(event) {
+    return event.deltaMode !== 0 || Math.abs(event.deltaY) >= mouseWheelDeltaThreshold;
+  }
 
   document.addEventListener('keydown', function (event) {
     if (event.defaultPrevented) return;
