@@ -1,11 +1,9 @@
 ﻿
 (function () {
-  document.documentElement.classList.add('mobile-scroll-mode');
-  return;
-
   var panels = [
     document.getElementById('hero'),
     document.getElementById('profile'),
+    document.getElementById('poster-examples'),
     document.getElementById('section2'),
     document.getElementById('section3'),
     document.getElementById('section4')
@@ -137,6 +135,7 @@
   function hideSection1Intro() {
     if (!section1Intro) return;
     section1Intro.classList.remove('is-visible');
+    document.body.classList.remove('is-section-intro-active');
     if (section1IntroCloseTimer) window.clearTimeout(section1IntroCloseTimer);
     section1IntroCloseTimer = window.setTimeout(function () {
       section1Intro.hidden = true;
@@ -156,6 +155,7 @@
       section1IntroCloseTimer = null;
     }
     section1Intro.hidden = false;
+    document.body.classList.add('is-section-intro-active');
     section1IntroMedia.muted = true;
     section1IntroMedia.playsInline = true;
     section1IntroMedia.playbackRate = 1.2;

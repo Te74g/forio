@@ -45,9 +45,10 @@
     return Boolean(coarse || hoverNone || touchPoints > 0 || mobileUA);
   };
   const revealMain = () => {
+    window.scrollTo(0, 0);
+    if (document.scrollingElement) document.scrollingElement.scrollTop = 0;
     document.body.classList.remove("is-cover-pending");
   };
-
   if (!wrapper || panels.length === 0) {
     revealMain();
     return;
@@ -60,6 +61,21 @@
       element.scrollTop = 0;
     });
   };
+
+  const isScrollLocked = () => document.body.classList.contains("is-cover-pending") || document.body.classList.contains("is-section-intro-active");
+  const keepLockedAtTop = () => {
+    if (!isScrollLocked()) return;
+    window.requestAnimationFrame(resetPageToTop);
+  };
+  const preventLockedScroll = (event) => {
+    if (!isScrollLocked()) return;
+    if (event.cancelable) event.preventDefault();
+    resetPageToTop();
+  };
+
+  window.addEventListener("scroll", keepLockedAtTop, { passive: true });
+  window.addEventListener("wheel", preventLockedScroll, { passive: false });
+  window.addEventListener("touchmove", preventLockedScroll, { passive: false });
 
   if (/^((?!chrome|android).)*safari/i.test(navigator.userAgent)) {
     wrapper.classList.add("is-safari");

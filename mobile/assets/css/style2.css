@@ -252,18 +252,39 @@ body{
   animation:SignShow 0s linear 0s forwards, SignFade .3s linear 3.33s forwards;
 }
 
-@media (max-width:767px) and (hover:none), (max-width:767px) and (pointer:coarse){
+@media (max-width:767px){
   .Sign__Wrapper picture{
-    display:none;
+    display:block;
+    position:relative;
+    z-index:1;
   }
 
   .Sign__Video{
-    display:block;
+    display:none;
+    position:absolute;
+    inset:0;
+    visibility:hidden;
   }
+}
 
-  .Cover__Wrapper.is-emit .Sign__Video{
-    animation:SignShow 0s linear 0s forwards, SignFade .3s linear 3.33s forwards;
-  }
+body.is-cover-pending{
+  height:100dvh;
+  overflow:hidden;
+  touch-action:none;
+  overscroll-behavior:none;
+}
+
+body.is-cover-pending #main{
+  position:fixed;
+  inset:0;
+  overflow:hidden;
+}
+
+body.is-section-intro-active{
+  height:100dvh;
+  overflow:hidden;
+  touch-action:none;
+  overscroll-behavior:none;
 }
 
 .page{
