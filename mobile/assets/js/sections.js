@@ -1,5 +1,8 @@
 ﻿
 (function () {
+  document.documentElement.classList.add('mobile-scroll-mode');
+  return;
+
   var panels = [
     document.getElementById('hero'),
     document.getElementById('profile'),
@@ -19,8 +22,11 @@
   var wheelSteps = 0;
   var wheelDirection = 0;
   var wheelResetTimer = null;
-  var wheelStepsNeeded = 10;
-  var mouseWheelDeltaThreshold = 80;
+  var wheelStepsNeeded = 1;
+  var wheelDeltaIgnoreThreshold = 2;
+  var mouseWheelDeltaThreshold = 8;
+  var touchScrollThreshold = 8;
+  var touchDeckThreshold = 28;
   var transitionTimer = null;
   var idleHintTimer = null;
   var idleHint = document.createElement('img');
@@ -242,7 +248,7 @@
       consumeDeckInput(event);
       return;
     }
-    if (Math.abs(event.deltaY) < 8) return;
+    if (Math.abs(event.deltaY) < wheelDeltaIgnoreThreshold) return;
     var direction = event.deltaY > 0 ? 1 : -1;
     if (scrollLocalPanel(direction, event.deltaY)) {
       event.preventDefault();
@@ -324,13 +330,16 @@
       return;
     }
     if (touchY === null || !event.touches || !event.touches.length) return;
-    var diff = touchY - event.touches[0].clientY;
-    if (Math.abs(diff) < 42) return;
+    var currentY = event.touches[0].clientY;
+    var diff = touchY - currentY;
+    var absDiff = Math.abs(diff);
+    if (absDiff < touchScrollThreshold) return;
     if (scrollLocalPanel(diff > 0 ? 1 : -1, diff)) {
       event.preventDefault();
-      touchY = event.touches[0].clientY;
+      touchY = currentY;
       return;
     }
+    if (absDiff < touchDeckThreshold) return;
     event.preventDefault();
     markScrollActivity();
     go(current + (diff > 0 ? 1 : -1));
@@ -707,59 +716,153 @@
 })();
 
 (function () {
-  var root = document.querySelector('#section2 .event-image-container');
-  if (!root) return;
+  var roots = Array.prototype.slice.call(document.querySelectorAll('.event-image-container'));
+  if (!roots.length) return;
 
-  var main = root.querySelector('.event-main-img');
-  var bg = root.querySelector('.event-image-bg');
-  var progress = root.querySelector('.event-progress-bar');
-  var thumbs = Array.prototype.slice.call(document.querySelectorAll('#section2 .thumbnail-item'));
-  var index = 0;
-  var timer = null;
   var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  function resetProgress() {
-    if (!progress || reduced) return;
-    progress.style.animation = 'none';
-    progress.offsetHeight;
-    progress.style.animation = '';
-  }
+  roots.forEach(function (root) {
+    var main = root.querySelector('.event-main-img');
+    var bg = root.querySelector('.event-image-bg');
+    var progress = root.querySelector('.event-progress-bar');
+    var host = root.closest('.event-col-content') || root.parentElement || document;
+    var thumbs = Array.prototype.slice.call(host.querySelectorAll('.thumbnail-item'));
+    var index = 0;
+    var timer = null;
+
+    function resetProgress() {
+      if (!progress || reduced) return;
+      progress.style.animation = 'none';
+      progress.offsetHeight;
+      progress.style.animation = '';
+    }
+
+    function show(next) {
+      if (!thumbs.length || !main) return;
+      index = (next + thumbs.length) % thumbs.length;
+      var item = thumbs[index];
+      var src = item.getAttribute('data-src');
+      if (!src) return;
+
+      main.classList.add('is-switching');
+      window.setTimeout(function () {
+        main.src = src;
+        if (main.hasAttribute('data-src')) main.setAttribute('data-src', src);
+        if (bg) bg.style.backgroundImage = "url('" + src + "')";
+        thumbs.forEach(function (thumb, i) {
+          thumb.classList.toggle('is-active', i === index);
+        });
+        resetProgress();
+        main.classList.remove('is-switching');
+      }, reduced ? 0 : 120);
+    }
+
+    function start() {
+      if (timer) window.clearInterval(timer);
+      if (reduced || thumbs.length < 2) return;
+      timer = window.setInterval(function () {
+        show(index + 1);
+      }, 7000);
+    }
+
+    thumbs.forEach(function (thumb, i) {
+      thumb.addEventListener('click', function () {
+        show(i);
+        start();
+      });
+    });
+
+    start();
+  });
+})();
+
+(function () {
+  var section = document.getElementById('poster-examples');
+  if (!section) return;
+
+  var panels = Array.prototype.slice.call(section.querySelectorAll('[data-poster-panel]'));
+  var thumbs = Array.prototype.slice.call(section.querySelectorAll('[data-poster-target]'));
+  var notes = Array.prototype.slice.call(section.querySelectorAll('[data-poster-note]'));
+  var stage = section.querySelector('.posterExamples__posterStage');
+  var index = 0;
+  var shineTimer = null;
+  var touchStartX = null;
+  var touchStartY = null;
 
   function show(next) {
-    if (!thumbs.length || !main) return;
-    index = (next + thumbs.length) % thumbs.length;
-    var item = thumbs[index];
-    var src = item.getAttribute('data-src');
-    if (!src) return;
-
-    main.classList.add('is-switching');
-    window.setTimeout(function () {
-      main.src = src;
-      if (bg) bg.style.backgroundImage = "url('" + src + "')";
-      thumbs.forEach(function (thumb, i) {
-        thumb.classList.toggle('is-active', i === index);
-      });
-      resetProgress();
-      main.classList.remove('is-switching');
-    }, reduced ? 0 : 120);
+    if (!panels.length) return;
+    index = Math.max(0, Math.min(panels.length - 1, next));
+    panels.forEach(function (panel, i) {
+      var active = i === index;
+      panel.classList.toggle('is-active', active);
+      panel.setAttribute('aria-hidden', active ? 'false' : 'true');
+      panel.setAttribute('tabindex', active ? '0' : '-1');
+    });
+    thumbs.forEach(function (thumb) {
+      thumb.classList.toggle('is-active', thumb.getAttribute('data-poster-target') === String(index));
+    });
+    notes.forEach(function (note) {
+      note.classList.toggle('is-active', note.getAttribute('data-poster-note') === String(index));
+    });
+    if (stage) {
+      stage.classList.remove('is-shining');
+      stage.offsetWidth;
+      stage.classList.add('is-shining');
+      if (shineTimer) window.clearTimeout(shineTimer);
+      shineTimer = window.setTimeout(function () {
+        stage.classList.remove('is-shining');
+        shineTimer = null;
+      }, 760);
+    }
   }
 
-  function start() {
-    if (timer) window.clearInterval(timer);
-    if (reduced || thumbs.length < 2) return;
-    timer = window.setInterval(function () {
-      show(index + 1);
-    }, 7000);
-  }
-
-  thumbs.forEach(function (thumb, i) {
+  thumbs.forEach(function (thumb) {
     thumb.addEventListener('click', function () {
-      show(i);
-      start();
+      show(Number(thumb.getAttribute('data-poster-target')) || 0);
     });
   });
 
-  start();
+  if (stage) {
+    stage.addEventListener('wheel', function (event) {
+      if (Math.abs(event.deltaY) < 16) return;
+      var next = index + (event.deltaY > 0 ? 1 : -1);
+      if (next < 0 || next >= panels.length) return;
+      event.preventDefault();
+      event.stopPropagation();
+      show(next);
+    }, { passive: false });
+
+    stage.addEventListener('touchstart', function (event) {
+      var touch = event.touches && event.touches.length ? event.touches[0] : null;
+      if (!touch) return;
+      touchStartX = touch.clientX;
+      touchStartY = touch.clientY;
+    }, { passive: true });
+
+    stage.addEventListener('touchend', function (event) {
+      var touch = event.changedTouches && event.changedTouches.length ? event.changedTouches[0] : null;
+      if (!touch || touchStartX === null || touchStartY === null) return;
+      var dx = touch.clientX - touchStartX;
+      var dy = touch.clientY - touchStartY;
+      touchStartX = null;
+      touchStartY = null;
+      if (Math.abs(dy) < 42 || Math.abs(dy) < Math.abs(dx) * 1.1) return;
+      show(index + (dy < 0 ? 1 : -1));
+    }, { passive: true });
+
+    stage.addEventListener('keydown', function (event) {
+      if (event.key === 'ArrowDown' || event.key === 'ArrowRight') {
+        event.preventDefault();
+        show(index + 1);
+      }
+      if (event.key === 'ArrowUp' || event.key === 'ArrowLeft') {
+        event.preventDefault();
+        show(index - 1);
+      }
+    });
+  }
+
+  show(0);
 })();
 
 (function () {
