@@ -5,6 +5,18 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="light">
 <meta name="theme-color" content="#ffffff">
+<script>
+(function(){
+  if (/(?:^|[?&])mobile=1(?:&|$)/.test(window.location.search)) return;
+  var coarse = window.matchMedia && window.matchMedia('(pointer: coarse)').matches;
+  var hoverNone = window.matchMedia && window.matchMedia('(hover: none)').matches;
+  var touchPoints = navigator.maxTouchPoints || navigator.msMaxTouchPoints || 0;
+  var mobileUA = /Android|iPhone|iPod|Mobile/i.test(navigator.userAgent);
+  var touchOnly = coarse && hoverNone && touchPoints > 0;
+  if (mobileUA || touchOnly) return;
+  window.location.replace('../' + window.location.search + window.location.hash);
+})();
+</script>
 <title></title>
 <link href="assets/css/style1.css" rel="stylesheet">
 <link href="assets/css/style2.css?v=8" rel="stylesheet">
@@ -520,6 +532,8 @@ VRChat上では写真撮影が趣味で、フォトコン企業賞も獲得経�
                 <p>ジェイプラの初心者ツアーに行ったきっかけは元々貴社のことをより知りつつ、どのように進行するのかを学ぶといった実利の部分でしたが、YUMIZUさんがとても親切かつ知的な方でしたので、すっかりファンになってしまいました。</p>
                 <p>YUMIZUさんは本当にいい方です、仕事も完璧でした。</p>
                 <p>ここでこのファンメを送れて良かったです。（？）</p>
+                <p>ぶいトレ会場で、周囲の後押しもあり、本当に出来ました。やはりそれだけ支持されているのだと思います。個人的にもお世話になっているので、このような機会に繋がって嬉しいです。たくさん無茶振りしていきたいと思います。YUMIZUさんのかわいいところが見れると思うので、もしよろしければご参加いただけると嬉しいです。</p>
+                <p><a href="https://vrchat.com/home/group/grp_5db5ced6-a2d3-40d8-baee-4b0e10f6e044" target="_blank" rel="noopener">https://vrchat.com/home/group/grp_5db5ced6-a2d3-40d8-baee-4b0e10f6e044</a></p>
               </div>
               <div class="posterExamples__note" data-poster-note="2">
                 <p>数合わせですが、任意団体では速度重視のデザインが多かったため、タイムキーパー力という観点で見ていただければと思います。</p>

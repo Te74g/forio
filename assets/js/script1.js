@@ -42,7 +42,8 @@
     const hoverNone = window.matchMedia && window.matchMedia("(hover: none)").matches;
     const touchPoints = navigator.maxTouchPoints || navigator.msMaxTouchPoints || 0;
     const mobileUA = /Android|iPhone|iPod|Mobile/i.test(navigator.userAgent);
-    return Boolean(coarse || hoverNone || touchPoints > 0 || mobileUA);
+    const touchOnly = coarse && hoverNone && touchPoints > 0;
+    return Boolean(mobileUA || touchOnly);
   };
   const revealMain = () => {
     document.body.classList.remove("is-cover-pending");
