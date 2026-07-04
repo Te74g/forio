@@ -97,7 +97,10 @@
     var panel = panels[current];
     if (!panel) return null;
     if (panel.id === 'hero') return null;
-    return panel.scrollHeight > panel.clientHeight + 2 ? panel : null;
+    if (panel.scrollHeight <= panel.clientHeight + 2) return null;
+    var oy = window.getComputedStyle(panel).overflowY;
+    if (oy !== 'auto' && oy !== 'scroll') return null;
+    return panel;
   }
 
   function canScrollPanel(panel, direction) {
