@@ -3,7 +3,6 @@
     document.getElementById('hero'),
     document.getElementById('profile'),
     document.getElementById('poster-examples'),
-    document.getElementById('section5'),
     document.getElementById('section2'),
     document.getElementById('section3'),
     document.getElementById('section4')
