@@ -183,12 +183,20 @@
     });
   }
 
+  function hydrateDeferred(panel) {
+    panel.querySelectorAll('img[data-defer]').forEach(function (img) {
+      img.src = img.getAttribute('data-defer');
+      img.removeAttribute('data-defer');
+    });
+  }
+
   function show(index) {
     panels.forEach(function (panel, i) {
       panel.classList.toggle('is-active', i === index);
       panel.classList.toggle('is-before', i < index);
       panel.setAttribute('aria-hidden', i === index ? 'false' : 'true');
     });
+    hydrateDeferred(panels[index]);
     setActive(panels[index].id);
   }
 
