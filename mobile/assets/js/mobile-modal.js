@@ -22,6 +22,8 @@
     '.js-photoZoomClose'
   ].join(',');
   var suppressClickUntil = 0;
+  var gesture = null;
+  var dragThreshold = 14;
 
   function openModal(modal) {
     if (!modal) return;
@@ -89,7 +91,59 @@
     suppressClickUntil = Date.now() + 650;
   }
 
+  function controlFrom(target) {
+    return target && target.closest ? target.closest(controlSelector) : null;
+  }
+
+  function pointFrom(event) {
+    var point = event;
+    if (event.changedTouches && event.changedTouches.length) point = event.changedTouches[0];
+    else if (event.touches && event.touches.length) point = event.touches[0];
+    return {
+      x: typeof point.clientX === 'number' ? point.clientX : 0,
+      y: typeof point.clientY === 'number' ? point.clientY : 0
+    };
+  }
+
+  function beginGesture(event) {
+    var control = controlFrom(event.target);
+    if (!control) {
+      gesture = null;
+      return;
+    }
+    var point = pointFrom(event);
+    gesture = {
+      control: control,
+      x: point.x,
+      y: point.y,
+      moved: false
+    };
+  }
+
+  function moveGesture(event) {
+    if (!gesture) return;
+    var point = pointFrom(event);
+    if (Math.abs(point.x - gesture.x) > dragThreshold || Math.abs(point.y - gesture.y) > dragThreshold) {
+      gesture.moved = true;
+      suppressClickUntil = Date.now() + 650;
+    }
+  }
+
+  function isTapGesture(event) {
+    var control = controlFrom(event.target);
+    if (!control || !gesture || gesture.control !== control) return false;
+    moveGesture(event);
+    if (gesture.moved) {
+      suppressClickUntil = Date.now() + 650;
+      gesture = null;
+      return false;
+    }
+    gesture = null;
+    return true;
+  }
+
   function handle(event) {
+    if (!isTapGesture(event)) return;
     var target = event.target;
     if (!target || !target.closest || leaveNormalLinkAlone(target)) return;
 
@@ -240,12 +294,29 @@
   }
 
   if (window.PointerEvent) {
+    document.addEventListener('pointerdown', function (event) {
+      if (event.pointerType !== 'touch' && event.pointerType !== 'pen') return;
+      if (event.button !== 0) return;
+      beginGesture(event);
+    }, true);
+    document.addEventListener('pointermove', function (event) {
+      if (event.pointerType !== 'touch' && event.pointerType !== 'pen') return;
+      moveGesture(event);
+    }, true);
+    document.addEventListener('pointercancel', function () {
+      gesture = null;
+    }, true);
     document.addEventListener('pointerup', function (event) {
       if (event.pointerType !== 'touch' && event.pointerType !== 'pen') return;
       if (event.button !== 0) return;
       handle(event);
     }, true);
   } else {
+    document.addEventListener('touchstart', beginGesture, true);
+    document.addEventListener('touchmove', moveGesture, true);
+    document.addEventListener('touchcancel', function () {
+      gesture = null;
+    }, true);
     document.addEventListener('touchend', handle, true);
   }
 
