@@ -1,0 +1,154 @@
+{
+  "chromium": {
+    "url": "http://127.0.0.1:8899/",
+    "progression": [
+      "hero",
+      "profile",
+      "poster-examples",
+      "section2",
+      "section3",
+      "section4"
+    ],
+    "expectedProgression": [
+      "hero",
+      "profile",
+      "poster-examples",
+      "section2",
+      "section3",
+      "section4"
+    ],
+    "modals": [
+      {
+        "modal": ".aboutModal",
+        "opened": true,
+        "closed": true,
+        "wheelScrolled": true,
+        "error": ""
+      },
+      {
+        "modal": ".favoriteItemModal",
+        "opened": true,
+        "closed": true,
+        "wheelScrolled": true,
+        "error": ""
+      },
+      {
+        "modal": "#comment-profile",
+        "opened": true,
+        "closed": true,
+        "wheelScrolled": true,
+        "error": ""
+      },
+      {
+        "modal": "#comment-works",
+        "opened": true,
+        "closed": true,
+        "wheelScrolled": true,
+        "error": ""
+      },
+      {
+        "modal": ".aniameModal",
+        "opened": true,
+        "closed": true,
+        "wheelScrolled": true,
+        "error": ""
+      },
+      {
+        "modal": ".graphicModal",
+        "opened": true,
+        "closed": true,
+        "wheelScrolled": true,
+        "error": ""
+      },
+      {
+        "modal": ".photoModal",
+        "opened": true,
+        "closed": true,
+        "wheelScrolled": true,
+        "error": ""
+      }
+    ],
+    "pageErrors": [],
+    "documentWidth": {
+      "scroll": 1440,
+      "client": 1440
+    },
+    "screenshot": "C:\\Users\\user\\Documents\\ポートフォリオ\\ポートフォリオ\\qa\\results\\desktop_push\\chromium.png"
+  },
+  "webkit": {
+    "url": "http://127.0.0.1:8899/",
+    "progression": [
+      "hero",
+      "profile",
+      "poster-examples",
+      "section2",
+      "section3",
+      "section4"
+    ],
+    "expectedProgression": [
+      "hero",
+      "profile",
+      "poster-examples",
+      "section2",
+      "section3",
+      "section4"
+    ],
+    "modals": [
+      {
+        "modal": ".aboutModal",
+        "opened": true,
+        "closed": true,
+        "wheelScrolled": true,
+        "error": ""
+      },
+      {
+        "modal": ".favoriteItemModal",
+        "opened": true,
+        "closed": true,
+        "wheelScrolled": true,
+        "error": ""
+      },
+      {
+        "modal": "#comment-profile",
+        "opened": true,
+        "closed": true,
+        "wheelScrolled": true,
+        "error": ""
+      },
+      {
+        "modal": "#comment-works",
+        "opened": true,
+        "closed": true,
+        "wheelScrolled": true,
+        "error": ""
+      },
+      {
+        "modal": ".aniameModal",
+        "opened": true,
+        "closed": true,
+        "wheelScrolled": true,
+        "error": ""
+      },
+      {
+        "modal": ".graphicModal",
+        "opened": true,
+        "closed": true,
+        "wheelScrolled": true,
+        "error": ""
+      },
+      {
+        "modal": ".photoModal",
+        "opened": true,
+        "closed": true,
+        "wheelScrolled": true,
+        "error": ""
+      }
+    ],
+    "pageErrors": [],
+    "documentWidth": {
+      "scroll": 1440,
+      "client": 1440
+    },
+    "screenshot": "C:\\Users\\user\\Documents\\ポートフォリオ\\ポートフォリオ\\qa\\results\\desktop_push\\webkit.png"
+  }
+}

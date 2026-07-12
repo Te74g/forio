@@ -7,13 +7,6 @@
 <meta name="theme-color" content="#ffffff">
 <script>
 (function(){
-  if (/(?:^|[?&])mobile=1(?:&|$)/.test(window.location.search)) return;
-  var coarse = window.matchMedia && window.matchMedia('(pointer: coarse)').matches;
-  var hoverNone = window.matchMedia && window.matchMedia('(hover: none)').matches;
-  var touchPoints = navigator.maxTouchPoints || navigator.msMaxTouchPoints || 0;
-  var mobileUA = /Android|iPhone|iPod|Mobile/i.test(navigator.userAgent);
-  var touchOnly = coarse && hoverNone && touchPoints > 0;
-  if (mobileUA || touchOnly) return;
   window.location.replace('../' + window.location.search + window.location.hash);
 })();
 </script>
@@ -640,7 +633,7 @@ VRChat上では写真撮影が趣味で、フォトコン企業賞も獲得経�
       <p>撮影・配信・編集までを自社製品で完結させる設計は、ブース全体から見て取れた。カメラで撮った素材がそのまま編集ソフトにつながり、無料版で裾野を広げ、業務効率を求める層がStudio版へ移る、という流れだ。ライブコンサートでファンが撮った素材をリアルタイムに取り込み、臨場感のある映像に仕上げる活用例も紹介された。</p>
       <p>Studio版で強化されているAI機能も紹介された。被写体の年齢をプラスマイナス何歳という単位で変える機能は、もともと映画で特殊メイクの代わりに使われてきた用途だという。手ブレの除去や、低解像度素材を4K相当へ引き上げるアップスケールにも対応する。この4月に発表されたばかりの音声機能では、文字起こしした内容を、学習させた自分の声で読み上げ直すこともできる。ナレーションを取り直せない場面に編集側で対応でき、字幕の表示位置が画面中央を避ける仕様になっている点も説明された。</p>
       <figure class="mc-inline"><button class="js-articlesZoom" type="button" data-src="../assets/images/works/articles/blackmagic-3.webp"><img src="../assets/images/works/articles/blackmagic-3.webp" alt="DaVinci Resolveのカラーページ" loading="lazy"></button><figcaption>DaVinci Resolveのカラーページ。カラーホイールとノードグラフでグレーディングを行う</figcaption></figure>
-      <p>初心者もプロも同じ画面を使うことになる。担当者は「全部をマスターする必要はなく、まずは切るところから、自分が必要としている機能から掘っていくのがいい」と語った。最初の一本の編集から業務の最前線まで、同じ製品群でつながっている。そのことがよく分かるブースだった。</p>
+      <p>初心者もプロも同じ画面を使うことになる。最初の一本の編集から業務の最前線まで、同じ製品群でつながっている。そのことがよく分かるブースだった。</p>
       <div class="related-post box-simple"><a class="related-post__link no-icon js-mcOpen" href="#mc-hobbyjapan"><figure class="eyecatch fit-cover thumb"><img loading="lazy" decoding="async" width="485" height="273" src="../assets/images/works/articles/hobbyjapan-keyvisual.webp" class="idx-eyecatch-image" alt=""></figure><div class="related-post__meta idx-post__meta inbox"><div class="related-post__ttl ttl"><span class="labeltext">関連記事</span>ホビージャパン　「20代はどこにいる」から始まったVRイベント</div><time class="time__date undo">2026.06.19</time></div></a></div>
       <div class="related-post box-text"><a class="related-post__link no-icon" href="https://www.blackmagicdesign.com/jp" target="_blank" rel="noopener"><div class="related-post__meta idx-post__meta inbox"><div class="related-post__ttl ttl"><span class="labeltext">公式サイト</span>Blackmagic Design</div></div></a></div>
       </div>

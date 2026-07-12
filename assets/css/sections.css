@@ -3068,6 +3068,9 @@ html.deck-mode body{
     box-sizing:border-box;
     width:calc(100vw - 22px) !important;
     max-height:calc(100dvh - 22px) !important;
+    touch-action:pan-y;
+    overscroll-behavior:contain;
+    -webkit-overflow-scrolling:touch;
     padding:20px 16px 18px;
     border-radius:16px;
   }

@@ -245,11 +245,8 @@
   }
 
   window.addEventListener('wheel', function (event) {
+    if (ignoreDeckInputWhileModalOpen()) return;
     if (busy) {
-      consumeDeckInput(event);
-      return;
-    }
-    if (ignoreDeckInputWhileModalOpen()) {
       consumeDeckInput(event);
       return;
     }
@@ -326,11 +323,8 @@
   }, { passive: true });
 
   window.addEventListener('touchmove', function (event) {
+    if (ignoreDeckInputWhileModalOpen()) return;
     if (busy) {
-      consumeDeckInput(event);
-      return;
-    }
-    if (ignoreDeckInputWhileModalOpen()) {
       consumeDeckInput(event);
       return;
     }

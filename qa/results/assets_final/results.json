@@ -1,0 +1,174 @@
+{
+  "chromium_desktop": {
+    "url": "http://127.0.0.1:8899/",
+    "progression": [
+      "hero",
+      "profile",
+      "poster-examples",
+      "section2",
+      "section3",
+      "section4"
+    ],
+    "expectedProgression": [
+      "hero",
+      "profile",
+      "poster-examples",
+      "section2",
+      "section3",
+      "section4"
+    ],
+    "pageErrors": [],
+    "localFailures": [],
+    "brokenImages": [],
+    "videos": [
+      {
+        "className": "Sign__Video",
+        "readyState": 4,
+        "networkState": 1,
+        "currentSrc": "http://127.0.0.1:8899/assets/videos/signature-mobile.mp4"
+      },
+      {
+        "className": "mobileGifVideo",
+        "readyState": 4,
+        "networkState": 1,
+        "currentSrc": "http://127.0.0.1:8899/assets/videos/teten-pop-squash-mobile.mp4"
+      },
+      {
+        "className": "sectionIntroVideo__media",
+        "readyState": 4,
+        "networkState": 1,
+        "currentSrc": "http://127.0.0.1:8899/assets/videos/section1-intro.mp4"
+      }
+    ],
+    "screenshot": "C:\\Users\\user\\Documents\\ポートフォリオ\\ポートフォリオ\\qa\\results\\assets_final\\chromium_desktop.png"
+  },
+  "webkit_desktop": {
+    "url": "http://127.0.0.1:8899/",
+    "progression": [
+      "hero",
+      "profile",
+      "poster-examples",
+      "section2",
+      "section3",
+      "section4"
+    ],
+    "expectedProgression": [
+      "hero",
+      "profile",
+      "poster-examples",
+      "section2",
+      "section3",
+      "section4"
+    ],
+    "pageErrors": [],
+    "localFailures": [],
+    "brokenImages": [],
+    "videos": [
+      {
+        "className": "Sign__Video",
+        "readyState": 4,
+        "networkState": 2,
+        "currentSrc": "http://127.0.0.1:8899/assets/videos/signature-mobile.mp4"
+      },
+      {
+        "className": "mobileGifVideo",
+        "readyState": 3,
+        "networkState": 1,
+        "currentSrc": "http://127.0.0.1:8899/assets/videos/teten-pop-squash-mobile.mp4"
+      },
+      {
+        "className": "sectionIntroVideo__media",
+        "readyState": 4,
+        "networkState": 1,
+        "currentSrc": "http://127.0.0.1:8899/assets/videos/section1-intro.mp4"
+      }
+    ],
+    "screenshot": "C:\\Users\\user\\Documents\\ポートフォリオ\\ポートフォリオ\\qa\\results\\assets_final\\webkit_desktop.png"
+  },
+  "chromium_mobile": {
+    "url": "http://127.0.0.1:8899/",
+    "progression": [
+      "hero",
+      "profile",
+      "poster-examples",
+      "section2",
+      "section3",
+      "section4"
+    ],
+    "expectedProgression": [
+      "hero",
+      "profile",
+      "poster-examples",
+      "section2",
+      "section3",
+      "section4"
+    ],
+    "pageErrors": [],
+    "localFailures": [],
+    "brokenImages": [],
+    "videos": [
+      {
+        "className": "Sign__Video",
+        "readyState": 4,
+        "networkState": 1,
+        "currentSrc": "http://127.0.0.1:8899/assets/videos/signature-mobile.mp4"
+      },
+      {
+        "className": "mobileGifVideo",
+        "readyState": 4,
+        "networkState": 1,
+        "currentSrc": "http://127.0.0.1:8899/assets/videos/teten-pop-squash-mobile.mp4"
+      },
+      {
+        "className": "sectionIntroVideo__media",
+        "readyState": 4,
+        "networkState": 1,
+        "currentSrc": "http://127.0.0.1:8899/assets/videos/section1-intro.mp4"
+      }
+    ],
+    "screenshot": "C:\\Users\\user\\Documents\\ポートフォリオ\\ポートフォリオ\\qa\\results\\assets_final\\chromium_mobile.png"
+  },
+  "webkit_mobile": {
+    "url": "http://127.0.0.1:8899/",
+    "progression": [
+      "hero",
+      "profile",
+      "poster-examples",
+      "section2",
+      "section3",
+      "section4"
+    ],
+    "expectedProgression": [
+      "hero",
+      "profile",
+      "poster-examples",
+      "section2",
+      "section3",
+      "section4"
+    ],
+    "pageErrors": [],
+    "localFailures": [],
+    "brokenImages": [],
+    "videos": [
+      {
+        "className": "Sign__Video",
+        "readyState": 4,
+        "networkState": 2,
+        "currentSrc": "http://127.0.0.1:8899/assets/videos/signature-mobile.mp4"
+      },
+      {
+        "className": "mobileGifVideo",
+        "readyState": 3,
+        "networkState": 1,
+        "currentSrc": "http://127.0.0.1:8899/assets/videos/teten-pop-squash-mobile.mp4"
+      },
+      {
+        "className": "sectionIntroVideo__media",
+        "readyState": 4,
+        "networkState": 1,
+        "currentSrc": "http://127.0.0.1:8899/assets/videos/section1-intro.mp4"
+      }
+    ],
+    "screenshot": "C:\\Users\\user\\Documents\\ポートフォリオ\\ポートフォリオ\\qa\\results\\assets_final\\webkit_mobile.png"
+  }
+}

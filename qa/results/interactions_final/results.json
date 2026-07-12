@@ -1,0 +1,182 @@
+{
+  "chromium": {
+    "url": "http://127.0.0.1:8899/",
+    "legacyMobileUrl": "http://127.0.0.1:8899/?mobile=1",
+    "progression": [
+      "hero",
+      "profile",
+      "poster-examples",
+      "section2",
+      "section3",
+      "section4"
+    ],
+    "expectedProgression": [
+      "hero",
+      "profile",
+      "poster-examples",
+      "section2",
+      "section3",
+      "section4"
+    ],
+    "modals": [
+      {
+        "opener": ".js-aboutModalOpen",
+        "opened": true,
+        "closed": true,
+        "error": ""
+      },
+      {
+        "opener": ".js-favoriteItemModalOpen",
+        "opened": true,
+        "closed": true,
+        "error": ""
+      },
+      {
+        "opener": ".js-commentOpen[data-comment=\"profile\"]",
+        "opened": true,
+        "closed": true,
+        "error": ""
+      },
+      {
+        "opener": ".js-commentOpen[data-comment=\"works\"]",
+        "opened": true,
+        "closed": true,
+        "error": ""
+      },
+      {
+        "opener": ".js-aniameModalOpen",
+        "opened": true,
+        "closed": true,
+        "error": ""
+      },
+      {
+        "opener": ".js-graphicModalOpen",
+        "opened": true,
+        "closed": true,
+        "error": ""
+      },
+      {
+        "opener": ".js-photoModalOpen",
+        "opened": true,
+        "closed": true,
+        "error": ""
+      }
+    ],
+    "viewers": [
+      {
+        "viewer": ".aniameModal__viewer",
+        "opened": true,
+        "closed": true,
+        "error": ""
+      },
+      {
+        "viewer": ".graphicModal__viewer",
+        "opened": true,
+        "closed": true,
+        "error": ""
+      },
+      {
+        "viewer": ".photoModal__viewer",
+        "opened": true,
+        "closed": true,
+        "error": ""
+      }
+    ],
+    "pageErrors": [],
+    "documentWidth": {
+      "scroll": 390,
+      "client": 390
+    },
+    "screenshot": "C:\\Users\\user\\Documents\\ポートフォリオ\\ポートフォリオ\\qa\\results\\interactions_final\\chromium.png"
+  },
+  "webkit": {
+    "url": "http://127.0.0.1:8899/",
+    "legacyMobileUrl": "http://127.0.0.1:8899/?mobile=1",
+    "progression": [
+      "hero",
+      "profile",
+      "poster-examples",
+      "section2",
+      "section3",
+      "section4"
+    ],
+    "expectedProgression": [
+      "hero",
+      "profile",
+      "poster-examples",
+      "section2",
+      "section3",
+      "section4"
+    ],
+    "modals": [
+      {
+        "opener": ".js-aboutModalOpen",
+        "opened": true,
+        "closed": true,
+        "error": ""
+      },
+      {
+        "opener": ".js-favoriteItemModalOpen",
+        "opened": true,
+        "closed": true,
+        "error": ""
+      },
+      {
+        "opener": ".js-commentOpen[data-comment=\"profile\"]",
+        "opened": true,
+        "closed": true,
+        "error": ""
+      },
+      {
+        "opener": ".js-commentOpen[data-comment=\"works\"]",
+        "opened": true,
+        "closed": true,
+        "error": ""
+      },
+      {
+        "opener": ".js-aniameModalOpen",
+        "opened": true,
+        "closed": true,
+        "error": ""
+      },
+      {
+        "opener": ".js-graphicModalOpen",
+        "opened": true,
+        "closed": true,
+        "error": ""
+      },
+      {
+        "opener": ".js-photoModalOpen",
+        "opened": true,
+        "closed": true,
+        "error": ""
+      }
+    ],
+    "viewers": [
+      {
+        "viewer": ".aniameModal__viewer",
+        "opened": true,
+        "closed": true,
+        "error": ""
+      },
+      {
+        "viewer": ".graphicModal__viewer",
+        "opened": true,
+        "closed": true,
+        "error": ""
+      },
+      {
+        "viewer": ".photoModal__viewer",
+        "opened": true,
+        "closed": true,
+        "error": ""
+      }
+    ],
+    "pageErrors": [],
+    "documentWidth": {
+      "scroll": 390,
+      "client": 390
+    },
+    "screenshot": "C:\\Users\\user\\Documents\\ポートフォリオ\\ポートフォリオ\\qa\\results\\interactions_final\\webkit.png"
+  }
+}
