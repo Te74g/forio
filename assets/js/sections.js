@@ -5,7 +5,8 @@
     document.getElementById('poster-examples'),
     document.getElementById('section2'),
     document.getElementById('section3'),
-    document.getElementById('section4')
+    document.getElementById('section4'),
+    document.getElementById('section5')
   ].filter(Boolean);
   if (!panels.length) return;
 
